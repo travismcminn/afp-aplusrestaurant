@@ -502,7 +502,7 @@
               <span class="cname">Kim Langlois</span>
               <span class="ctitle">Vice President of Sales &amp; Marketing, Transportation<br>American Financial Partners</span>
               <div class="clinks">
-                <a class="clink" id="kimEmailLink">✉ <span id="kimEmailText"></span></a>
+                <a class="clink" href="#" onclick="window.location.href='mailto:'+'kim'+'@'+'financewithafp.com';return false;">✉ kim<!-- -->@<!-- -->financewithafp<!-- -->.com</a>
                 <a class="clink" href="tel:9495668795">☎ 949.566.8795</a>
                 <a class="clink" href="http://www.financewithafp.com" target="_blank" rel="noopener">🌐 financewithafp.com</a>
               </div>
@@ -602,7 +602,7 @@
     </p>
     <p style="margin:0;">
       Questions? Contact Kim Langlois ·
-      <a href="#" id="kimFooterEmail" style="color:rgba(255,255,255,0.82);text-decoration:none;"></a> ·
+      <a href="#" onclick="window.location.href='mailto:'+'kim'+'@'+'financewithafp.com';return false;" style="color:rgba(255,255,255,0.82);text-decoration:none;">kim<!-- -->@<!-- -->financewithafp<!-- -->.com</a> ·
       <a href="tel:9495668795">949.566.8795</a> ·
       <a href="http://www.financewithafp.com" target="_blank" rel="noopener">financewithafp.com</a>
     </p>
@@ -612,17 +612,6 @@
   </footer>
 
   <script>
-    // ── Build Kim's email at runtime (prevents Cloudflare re-encoding) ──
-    (function() {
-      const email = ['kim', 'financewithafp.com'].join('@');
-      const cardLink   = document.getElementById('kimEmailLink');
-      const cardText   = document.getElementById('kimEmailText');
-      const footerLink = document.getElementById('kimFooterEmail');
-      if (cardLink)   cardLink.href        = 'mailto:' + email;
-      if (cardText)   cardText.textContent = email;
-      if (footerLink) { footerLink.href = 'mailto:' + email; footerLink.textContent = email; }
-    })();
-
     // ── Payment Estimator ─────────────────────────────────────────
     // Rate factors derived from AFP's published payment examples ($25k base)
     const FACTORS = { 24: 0.047027, 36: 0.032220, 48: 0.025123, 60: 0.020520 };
