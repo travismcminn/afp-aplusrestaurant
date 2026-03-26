@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Plus Restaurant Supply × AFP | Equipment Financing</title>
+  <link rel="icon" type="image/png" href="https://cdn.shopify.com/s/files/1/0878/0608/3384/files/AFP-FULL.png?v=1753306439" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green:       #1a3d1f;
+      --green-mid:   #2a5c31;
+      --green-light: #e8f0e9;
+      --amber:       #c47d2b;
+      --amber-light: #f5e6cf;
+      --cream:       #faf8f4;
+      --ink:         #1c1c1c;
+      --muted:       #6b7a6d;
+      --border:      #d8e0d9;
+      --card:        #ffffff;
+      --shadow:      0 4px 20px rgba(26, 61, 31, 0.10);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    /* ── Top announcement bar ── */
+    .top-bar {
+      background: var(--green);
+      color: #fff;
+      text-align: center;
+      padding: 9px 16px;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      font-weight: 500;
+    }
+    .top-bar span { opacity: 0.7; margin: 0 10px; }
+
+    /* ── Hero header ── */
+    .hero {
+      background: var(--green);
+      color: #fff;
+      padding: 28px 24px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(196,125,43,0.18) 0%, transparent 65%),
+                  url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      position: relative;
+    }
+    .logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .logo-row img {
+      max-height: 52px;
+      height: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.95;
+    }
+    .logo-row .afp-logo {
+      filter: brightness(0) invert(1);
+    }
+    .logo-divider {
+      width: 1px;
+      height: 36px;
+      background: rgba(255,255,255,0.3);
+    }
+    .hero-copy {
+      text-align: center;
+    }
+    .hero-copy h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      margin: 0 0 8px;
+      line-height: 1.2;
+    }
+    .hero-copy p {
+      margin: 0;
+      font-size: 0.95rem;
+      opacity: 0.82;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .hero-badges {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .badge {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: #fff;
+    }
+    .badge.amber {
+      background: rgba(196,125,43,0.35);
+      border-color: rgba(196,125,43,0.5);
+    }
+
+    /* ── Main layout ── */
+    .main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 20px 48px;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+    .card-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 6px;
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--green);
+      margin: 0 0 16px;
+    }
+
+    /* ── Form iframe ── */
+    .form-card {
+      padding: 18px;
+    }
+    .form-card iframe {
+      border: none;
+      border-radius: 10px;
+      width: 100%;
+      min-height: 740px;
+      display: block;
+    }
+
+    /* ── Contact box ── */
+    .contact-strip {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: var(--green-light);
+      border-radius: 10px;
+      border-left: 4px solid var(--green);
+      margin-bottom: 20px;
+    }
+    .contact-photo {
+      width: 54px;
+      height: 54px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 2px solid var(--border);
+    }
+    .contact-meta { flex: 1; }
+    .contact-meta strong { display: block; font-size: 0.95rem; color: var(--green); }
+    .contact-meta span { font-size: 0.78rem; color: var(--muted); display: block; margin-bottom: 6px; }
+    .contact-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .contact-link {
+      font-size: 0.8rem;
+      color: var(--green);
+      text-decoration: none;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-weight: 500;
+      transition: background 0.15s, color 0.15s;
+    }
+    .contact-link:hover { background: var(--green); color: #fff; }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 18px 0;
+    }
+
+    /* ── Payment Estimator ── */
+    .estimator-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--green);
+      margin: 0 0 14px;
+    }
+    .slider-group { margin-bottom: 16px; }
+    .slider-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+    .slider-label span { font-size: 0.82rem; color: var(--muted); }
+    .slider-label strong { font-size: 1rem; color: var(--ink); }
+    .slider-label .sub { font-size: 0.78rem; color: var(--amber); font-weight: 600; }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 5px;
+      border-radius: 3px;
+      background: var(--border);
+      outline: none;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 3px solid #fff;
+      box-shadow: 0 1px 5px rgba(26,61,31,0.3);
+      cursor: pointer;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 3px solid #fff;
+      box-shadow: 0 1px 5px rgba(26,61,31,0.3);
+      cursor: pointer;
+    }
+
+    .payment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .payment-tile {
+      background: var(--green-light);
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      border: 1px solid rgba(26,61,31,0.1);
+      transition: transform 0.15s;
+    }
+    .payment-tile:hover { transform: translateY(-1px); }
+    .payment-tile .term { font-size: 0.72rem; color: var(--muted); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    .payment-tile .amount { font-size: 1.15rem; font-weight: 700; color: var(--green); font-family: 'Playfair Display', serif; }
+    .payment-tile .per { font-size: 0.7rem; color: var(--muted); }
+    .payment-tile.featured { background: var(--green); border-color: var(--green); }
+    .payment-tile.featured .term { color: rgba(255,255,255,0.6); }
+    .payment-tile.featured .amount { color: #fff; }
+    .payment-tile.featured .per { color: rgba(255,255,255,0.65); }
+    .payment-tile.featured .best-val {
+      display: inline-block;
+      background: var(--amber);
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+      margin-top: 2px;
+      width: fit-content;
+    }
+
+    .estimator-note {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    /* ── Why Financing section ── */
+    .benefits-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .benefit-item {
+      background: var(--green-light);
+      border-radius: 10px;
+      padding: 12px 13px;
+    }
+    .benefit-item .icon { font-size: 1.3rem; margin-bottom: 4px; }
+    .benefit-item .b-title { font-size: 0.8rem; font-weight: 700; color: var(--green); }
+    .benefit-item .b-desc { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+
+    /* ── Process steps ── */
+    .steps { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .step-body { flex: 1; }
+    .step-body strong { font-size: 0.88rem; color: var(--ink); display: block; }
+    .step-body span { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── Reviews ── */
+    .reviews-area { display: flex; flex-direction: column; gap: 8px; }
+    .review-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--amber);
+      border-radius: 8px;
+      padding: 12px 14px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .review-card.visible { opacity: 1; transform: translateY(0); }
+    .review-card p { margin: 0 0 6px; font-size: 0.83rem; font-style: italic; color: var(--ink); line-height: 1.5; }
+    .review-meta { display: flex; align-items: center; gap: 6px; }
+    .stars { color: var(--amber); font-size: 0.75rem; letter-spacing: -1px; }
+    .reviewer { font-size: 0.76rem; font-weight: 700; color: var(--green); }
+
+    /* ── Equipment types ── */
+    .equip-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .equip-chip {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--ink);
+      cursor: default;
+    }
+    .equip-chip:hover { background: var(--green); color: #fff; border-color: var(--green); }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--green);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 18px 16px;
+      font-size: 0.75rem;
+      line-height: 1.6;
+    }
+    footer a { color: rgba(255,255,255,0.85); text-decoration: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .two-col { grid-template-columns: 1fr; }
+      .benefits-row { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 540px) {
+      .payment-grid { grid-template-columns: 1fr 1fr; }
+      .benefits-row { grid-template-columns: 1fr; }
+      .logo-row img { max-height: 38px; }
+      .hero-copy h1 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement bar -->
+  <div class="top-bar">
+    🍽️ A Plus Restaurant Supply &amp; Repair now offers equipment financing through AFP
+    <span>|</span>
+    Same-day decisions available <span>|</span>
+    <a href="tel:7853134780" style="color:#fff;font-weight:600;">Call JoJo: 785.313.4780</a>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="logo-row">
+        <img src="https://cdn.shopify.com/s/files/1/0878/0608/3384/files/logo-3_1.jpg?v=1774560045" alt="A Plus Restaurant Supply & Repair" />
+        <div class="logo-divider"></div>
+        <img class="afp-logo" src="https://cdn.shopify.com/s/files/1/0878/0608/3384/files/AFP-FULL.png?v=1753306439" alt="American Financial Partners" />
+      </div>
+      <div class="hero-copy">
+        <h1>Finance Your Kitchen Equipment<br>with Confidence</h1>
+        <p>A Plus Restaurant Supply &amp; Repair has partnered with American Financial Partners to bring flexible, fast equipment financing to every restaurateur, caterer, and food service business.</p>
+      </div>
+      <div class="hero-badges">
+        <span class="badge">✓ Fast Approvals</span>
+        <span class="badge">✓ 48–84 Month Terms</span>
+        <span class="badge amber">✓ Preserve Your Cash Flow</span>
+        <span class="badge">✓ New &amp; Used Equipment</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <div class="main">
+    <div class="two-col">
+
+      <!-- LEFT: Application form -->
+      <div>
+        <div class="card form-card">
+          <div class="card-label">Step 1</div>
+          <div class="card-title">Apply for Financing</div>
+          <iframe
+            src="https://form.jotform.com/251807213758157"
+            title="Apply for Equipment Financing – A Plus x AFP"
+            frameborder="0"
+            scrolling="no"
+            allowtransparency="true"
+            allow="geolocation; microphone; camera; fullscreen; payment"
+          ></iframe>
+        </div>
+      </div>
+
+      <!-- RIGHT: Info, estimator, reviews -->
+      <div style="display:flex;flex-direction:column;gap:20px;">
+
+        <!-- Contact -->
+        <div class="card">
+          <div class="card-label">Your AFP Contact</div>
+          <div class="contact-strip">
+            <img class="contact-photo" src="https://cdn.shopify.com/s/files/1/0878/0608/3384/files/jojo.png?v=1753395449" alt="JoJo Williams" />
+            <div class="contact-meta">
+              <strong>JoJo Williams</strong>
+              <span>Equipment Finance Specialist · AFP</span>
+              <div class="contact-links">
+                <a class="contact-link" href="mailto:jojo@financewithafp.com">📧 Email JoJo</a>
+                <a class="contact-link" href="tel:7853134780">📞 785.313.4780</a>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:0.8rem;color:var(--muted);margin:0;">JoJo brings nearly a decade of public and commercial finance experience. She'll guide you from application to approval — personally.</p>
+        </div>
+
+        <!-- Payment Estimator -->
+        <div class="card">
+          <div class="card-label">Payment Estimator</div>
+          <div class="estimator-title">Estimate your monthly payment</div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>Equipment Cost</span>
+              <strong id="costDisplay">$50,000</strong>
+            </div>
+            <input type="range" id="costSlider" min="5000" max="600000" step="1000" value="50000" />
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label">
+              <span>End-of-term residual / balloon</span>
+              <div>
+                <strong id="residPct">10%</strong>
+                <span class="sub" id="residDollar">($5,000)</span>
+              </div>
+            </div>
+            <input type="range" id="residSlider" min="0" max="50" step="1" value="10" />
+          </div>
+
+          <div class="payment-grid" id="paymentGrid"></div>
+
+          <p class="estimator-note">* Estimates use standard lease factors for illustration purposes only. Residual is a balloon amount due at end of term. Final terms are subject to credit approval and may vary.</p>
+        </div>
+
+        <!-- Benefits of Financing -->
+        <div class="card">
+          <div class="card-label">Why Finance?</div>
+          <div class="card-title" style="margin-bottom:14px;">Built for Food Service Businesses</div>
+          <div class="benefits-row">
+            <div class="benefit-item">
+              <div class="icon">💵</div>
+              <div class="b-title">Preserve Cash</div>
+              <div class="b-desc">Keep working capital free for payroll, food costs &amp; ops</div>
+            </div>
+            <div class="benefit-item">
+              <div class="icon">⚡</div>
+              <div class="b-title">Fast Decisions</div>
+              <div class="b-desc">Often same-day — get your kitchen running sooner</div>
+            </div>
+            <div class="benefit-item">
+              <div class="icon">📊</div>
+              <div class="b-title">Tax Advantages</div>
+              <div class="b-desc">Monthly payments may be fully deductible under Section 179</div>
+            </div>
+            <div class="benefit-item">
+              <div class="icon">🔧</div>
+              <div class="b-title">New &amp; Used</div>
+              <div class="b-desc">Finance the full A Plus inventory — new, used, or refurbished</div>
+            </div>
+            <div class="benefit-item">
+              <div class="icon">📅</div>
+              <div class="b-title">Flexible Terms</div>
+              <div class="b-desc">48–84 month terms to fit your cash flow cycle</div>
+            </div>
+            <div class="benefit-item">
+              <div class="icon">🤝</div>
+              <div class="b-title">Personal Touch</div>
+              <div class="b-desc">AFP knows you by name — no faceless bank process</div>
+            </div>
+          </div>
+
+          <!-- Equipment types -->
+          <div class="card-label" style="margin-bottom:8px;">Equipment We Finance</div>
+          <div class="equip-chips">
+            <span class="equip-chip">Commercial Ovens</span>
+            <span class="equip-chip">Refrigeration</span>
+            <span class="equip-chip">Fryers &amp; Ranges</span>
+            <span class="equip-chip">Dishwashers</span>
+            <span class="equip-chip">Prep Tables</span>
+            <span class="equip-chip">Freezers</span>
+            <span class="equip-chip">Ice Machines</span>
+            <span class="equip-chip">Hood Systems</span>
+            <span class="equip-chip">Mixers &amp; Slicers</span>
+            <span class="equip-chip">Bar Equipment</span>
+            <span class="equip-chip">Display Cases</span>
+            <span class="equip-chip">Full Buildouts</span>
+          </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="card">
+          <div class="card-label">The Process</div>
+          <div class="card-title" style="margin-bottom:14px;">How It Works</div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-body">
+                <strong>Submit your application</strong>
+                <span>Fill out the form to the left — takes about 5 minutes</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-body">
+                <strong>Get a decision fast</strong>
+                <span>JoJo will reach out, often same-day, with your options</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-body">
+                <strong>Sign &amp; get funded</strong>
+                <span>AFP issues payment to A Plus — your equipment ships</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div class="step-body">
+                <strong>Your kitchen gets to work</strong>
+                <span>Equipment earning for you before you even make a payment</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reviews -->
+        <div class="card">
+          <div class="card-label">Customer Reviews</div>
+          <div class="card-title" style="margin-bottom:12px;">What Businesses Are Saying</div>
+          <div class="reviews-area" id="reviewsArea"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p style="margin:0 0 4px;">
+      <strong style="color:#fff;">A Plus Restaurant Supply &amp; Repair</strong> &nbsp;×&nbsp; <strong style="color:#fff;">American Financial Partners</strong>
+    </p>
+    <p style="margin:0;">
+      Questions? Contact JoJo Williams · <a href="mailto:jojo@financewithafp.com">jojo@financewithafp.com</a> · <a href="tel:7853134780">785.313.4780</a>
+    </p>
+    <p style="margin:8px 0 0; opacity:0.55; font-size:0.68rem;">Payment estimates are for illustration only and subject to credit approval. Rates and structure may vary. American Financial Partners is the financing provider; A Plus Restaurant Supply &amp; Repair is the equipment dealer.</p>
+  </footer>
+
+  <script>
+    // ── Payment Estimator ──────────────────────────────────
+    const costSlider  = document.getElementById('costSlider');
+    const residSlider = document.getElementById('residSlider');
+    const costDisplay  = document.getElementById('costDisplay');
+    const residPct     = document.getElementById('residPct');
+    const residDollar  = document.getElementById('residDollar');
+    const paymentGrid  = document.getElementById('paymentGrid');
+
+    const FACTORS = { 48: 0.02512, 60: 0.02052, 72: 0.01764, 84: 0.01554 };
+    const BEST_TERM = 60; // highlighted as "best value"
+
+    function fmt(n, cents) {
+      return '$' + Number(n).toLocaleString('en-US', {
+        minimumFractionDigits: cents ? 2 : 0,
+        maximumFractionDigits: cents ? 2 : 0
+      });
+    }
+
+    function updateEstimator() {
+      const cost  = parseInt(costSlider.value, 10);
+      const rPct  = parseInt(residSlider.value, 10);
+      const resid = Math.round(cost * rPct / 100);
+      const financed = cost - resid;
+
+      costDisplay.textContent  = fmt(cost);
+      residPct.textContent     = rPct + '%';
+      residDollar.textContent  = '(' + fmt(resid) + ')';
+
+      let html = '';
+      [48, 60, 72, 84].forEach(term => {
+        const pmt = financed * FACTORS[term];
+        const featured = term === BEST_TERM ? 'featured' : '';
+        html += `
+          <div class="payment-tile ${featured}">
+            <span class="term">${term} months</span>
+            <span class="amount">${fmt(pmt, true)}</span>
+            <span class="per">/ month</span>
+            ${featured ? '<span class="best-val">Popular</span>' : ''}
+          </div>`;
+      });
+      paymentGrid.innerHTML = html;
+    }
+
+    costSlider.addEventListener('input', updateEstimator);
+    residSlider.addEventListener('input', updateEstimator);
+    updateEstimator();
+
+    // ── Reviews Carousel ──────────────────────────────────
+    const REVIEWS = [
+      { name: 'Marcus T.', role: 'Restaurant Owner', text: 'AFP made financing my commercial kitchen buildout incredibly simple. JoJo walked me through every step and we had approval the same day.' },
+      { name: 'Angela R.', role: 'Catering Company', text: 'I was nervous about financing but the team at AFP made it feel easy. Clear terms, no surprises, and fast funding.' },
+      { name: 'David K.', role: 'Food Truck Operator', text: 'Getting my new fryer and prep line financed through AFP meant I didn't drain my savings. 10/10 would recommend.' },
+      { name: 'Samantha L.', role: 'Bakery Owner', text: 'Great customer service — they actually know you by name. My equipment was funded and delivered faster than I expected.' },
+      { name: 'Carlos M.', role: 'Bar & Grill Owner', text: 'AFP's flexible terms let me match payments to my cash flow. The whole process was transparent and painless.' },
+    ];
+
+    const reviewsArea = document.getElementById('reviewsArea');
+    let rIdx = 0;
+
+    function getCount() { return window.innerWidth <= 900 ? 1 : 2; }
+
+    function renderReviews() {
+      const count = getCount();
+      reviewsArea.innerHTML = '';
+      for (let i = 0; i < count; i++) {
+        const r = REVIEWS[(rIdx + i) % REVIEWS.length];
+        const card = document.createElement('div');
+        card.className = 'review-card';
+        card.innerHTML = `
+          <p>"${r.text}"</p>
+          <div class="review-meta">
+            <span class="stars">★★★★★</span>
+            <span class="reviewer">— ${r.name}, ${r.role}</span>
+          </div>`;
+        reviewsArea.appendChild(card);
+        requestAnimationFrame(() => { requestAnimationFrame(() => { card.classList.add('visible'); }); });
+      }
+    }
+
+    window.addEventListener('resize', () => renderReviews());
+    setInterval(() => { rIdx = (rIdx + 1) % REVIEWS.length; renderReviews(); }, 6500);
+    renderReviews();
+  </script>
+</body>
+</html>
