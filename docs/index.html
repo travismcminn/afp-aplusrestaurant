@@ -326,8 +326,17 @@
     .step-body strong { font-size: 0.84rem; color: #111; display: block; }
     .step-body span   { font-size: 0.74rem; color: var(--muted); }
 
-    /* ── Reviews ── */
-    .reviews-wrap { display: flex; flex-direction: column; gap: 9px; }
+    /* ── Full-width Reviews ── */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 1000px) { .reviews-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 640px)  { .reviews-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 400px)  { .reviews-grid { grid-template-columns: 1fr; } }
+
+    /* ── Reviews (shared styles) ── */
     .rcard {
       background: var(--white); border: 1px solid var(--border);
       border-left: 3px solid var(--amber);
@@ -493,7 +502,7 @@
               <span class="cname">Kim Langlois</span>
               <span class="ctitle">Vice President of Sales &amp; Marketing, Transportation<br>American Financial Partners</span>
               <div class="clinks">
-                <a class="clink" href="mailto:kim@financewithafp.com">✉ kim@financewithafp.com</a>
+                <a class="clink" href="/cdn-cgi/l/email-protection#573c3e3a17313e3936393432203e233f3631277934383a">✉ <span class="__cf_email__" data-cfemail="2a4143476a4c43444b44494f5d435e424b4c5a04494547">[email&#160;protected]</span></a>
                 <a class="clink" href="tel:9495668795">☎ 949.566.8795</a>
                 <a class="clink" href="http://www.financewithafp.com" target="_blank" rel="noopener">🌐 financewithafp.com</a>
               </div>
@@ -515,19 +524,8 @@
             <input type="range" id="costSlider" min="5000" max="600000" step="1000" value="50000" />
           </div>
 
-          <div class="slider-row">
-            <div class="slider-lbl-row">
-              <span class="slbl">End-of-term residual / balloon</span>
-              <span>
-                <span class="sval" id="residPct">10%</span>
-                <span class="ssub" id="residDollar">($5,000)</span>
-              </span>
-            </div>
-            <input type="range" id="residSlider" min="0" max="50" step="1" value="10" />
-          </div>
-
           <div class="pay-grid" id="payGrid"></div>
-          <p class="est-note">* Estimates use standard lease factors for illustration only. Residual is a balloon amount due at end of term. Final terms depend on credit quality and structure.</p>
+          <p class="est-note">* Estimates use AFP standard rate factors for illustration only. Final terms are subject to credit approval and may vary. For quotes over $250,000 please call <a href="tel:8668154488" style="color:var(--amber);text-decoration:none;font-weight:600;">866.815.4488</a>.</p>
         </div>
 
         <!-- Why Finance + Equipment -->
@@ -585,15 +583,16 @@
           </div>
         </div>
 
-        <!-- Customer Reviews -->
-        <div class="card">
-          <div class="eyebrow">Customer Reviews</div>
-          <div class="card-heading">What Businesses Are Saying</div>
-          <div class="reviews-wrap" id="reviewsWrap"></div>
-        </div>
-
       </div>
     </div>
+
+    <!-- Full-width Reviews -->
+    <div class="card reviews-full" style="margin-top:20px;">
+      <div class="eyebrow" style="text-align:center;">Customer Reviews</div>
+      <div class="card-heading" style="text-align:center;margin-bottom:20px;">What Businesses Are Saying</div>
+      <div class="reviews-grid" id="reviewsWrap"></div>
+    </div>
+
   </div>
 
   <!-- Footer -->
@@ -603,7 +602,7 @@
     </p>
     <p style="margin:0;">
       Questions? Contact Kim Langlois ·
-      <a href="mailto:kim@financewithafp.com">kim@financewithafp.com</a> ·
+      <a href="/cdn-cgi/l/email-protection#3b5052567b5d52555a55585e4c524f535a5d4b15585456"><span class="__cf_email__" data-cfemail="6c0705012c0a05020d020f091b0518040d0a1c420f0301">[email&#160;protected]</span></a> ·
       <a href="tel:9495668795">949.566.8795</a> ·
       <a href="http://www.financewithafp.com" target="_blank" rel="noopener">financewithafp.com</a>
     </p>
@@ -612,9 +611,10 @@
     </p>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ── Payment Estimator ─────────────────────────────────────────
-    const FACTORS = { 48: 0.02512, 60: 0.02052, 72: 0.01764, 84: 0.01554 };
+    // Rate factors derived from AFP's published payment examples ($25k base)
+    const FACTORS = { 24: 0.047027, 36: 0.032220, 48: 0.025123, 60: 0.020520 };
 
     function fmt(n, cents) {
       return '$' + Number(n).toLocaleString('en-US', {
@@ -623,27 +623,18 @@
       });
     }
 
-    const costSlider  = document.getElementById('costSlider');
-    const residSlider = document.getElementById('residSlider');
-    const costVal     = document.getElementById('costVal');
-    const residPct    = document.getElementById('residPct');
-    const residDollar = document.getElementById('residDollar');
-    const payGrid     = document.getElementById('payGrid');
+    const costSlider = document.getElementById('costSlider');
+    const costVal    = document.getElementById('costVal');
+    const payGrid    = document.getElementById('payGrid');
 
     function updateEstimator() {
-      const cost  = parseInt(costSlider.value, 10);
-      const rPct  = parseInt(residSlider.value, 10);
-      const resid = Math.round(cost * rPct / 100);
-      const fin   = cost - resid;
-
-      costVal.textContent   = fmt(cost);
-      residPct.textContent  = rPct + '%';
-      residDollar.textContent = '(' + fmt(resid) + ')';
+      const cost = parseInt(costSlider.value, 10);
+      costVal.textContent = fmt(cost);
 
       let html = '';
-      [48, 60, 72, 84].forEach(term => {
-        const pmt  = fin * FACTORS[term];
-        const feat = term === 60;
+      [24, 36, 48, 60].forEach(term => {
+        const pmt  = cost * FACTORS[term];
+        const feat = term === 48;
         html += `
           <div class="ptile${feat ? ' feat' : ''}">
             <div class="term">${term} months</div>
@@ -656,10 +647,9 @@
     }
 
     costSlider.addEventListener('input', updateEstimator);
-    residSlider.addEventListener('input', updateEstimator);
     updateEstimator();
 
-    // ── Reviews Carousel ──────────────────────────────────────────
+    // ── Reviews — full-width grid, all 5 shown ───────────────────
     const REVIEWS = [
       { name: 'Marcus T.',    role: 'Restaurant Owner',    text: 'AFP made financing my commercial kitchen buildout incredibly simple. Got approval the same day and the whole process was painless.' },
       { name: 'Angela R.',    role: 'Catering Company',    text: 'I was nervous about equipment financing but the AFP team made it feel easy. Clear terms, no surprises, and fast funding.' },
@@ -669,13 +659,10 @@
     ];
 
     const reviewsWrap = document.getElementById('reviewsWrap');
-    let rIdx = 0;
 
     function renderReviews() {
-      const count = window.innerWidth <= 860 ? 1 : 2;
       reviewsWrap.innerHTML = '';
-      for (let i = 0; i < count; i++) {
-        const r = REVIEWS[(rIdx + i) % REVIEWS.length];
+      REVIEWS.forEach(r => {
         const card = document.createElement('div');
         card.className = 'rcard';
         card.innerHTML = `
@@ -686,11 +673,9 @@
           </div>`;
         reviewsWrap.appendChild(card);
         requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('vis')));
-      }
+      });
     }
 
-    window.addEventListener('resize', renderReviews);
-    setInterval(() => { rIdx = (rIdx + 1) % REVIEWS.length; renderReviews(); }, 7000);
     renderReviews();
   </script>
 </body>
