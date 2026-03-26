@@ -481,13 +481,6 @@
           </div>
         </div>
 
-        <!-- AFP trust strip -->
-        <div class="trust-strip">
-          <div class="trust-star">✦</div>
-          <p><em>"Equipment Financing. Freedom to Grow."</em><br>
-          <strong>American Financial Partners</strong> — 20+ years of trusted business financing, rooted in hard work, honesty, and opportunity.</p>
-        </div>
-
       </div>
 
       <!-- ═══ RIGHT COLUMN ═══ -->
@@ -583,6 +576,13 @@
           </div>
         </div>
 
+        <!-- AFP trust strip -->
+        <div class="trust-strip">
+          <div class="trust-star">✦</div>
+          <p><em>"Equipment Financing. Freedom to Grow."</em><br>
+          <strong>American Financial Partners</strong> — 20+ years of trusted business financing, rooted in hard work, honesty, and opportunity.</p>
+        </div>
+
       </div>
     </div>
 
@@ -673,3 +673,11 @@
           </div>`;
         reviewsWrap.appendChild(card);
       
+        requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('vis')));
+      });
+    }
+
+    renderReviews();
+  </script>
+</body>
+</html>
