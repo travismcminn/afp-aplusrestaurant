@@ -502,7 +502,7 @@
               <span class="cname">Kim Langlois</span>
               <span class="ctitle">Vice President of Sales &amp; Marketing, Transportation<br>American Financial Partners</span>
               <div class="clinks">
-                <a class="clink" href="mailto:kim@financewithafp.com">✉ <span class="__cf_email__" data-cfemail="2a4143476a4c43444b44494f5d435e424b4c5a04494547">[email&#160;protected]</span></a>
+                <a class="clink" id="kimEmailLink">✉ <span id="kimEmailText"></span></a>
                 <a class="clink" href="tel:9495668795">☎ 949.566.8795</a>
                 <a class="clink" href="http://www.financewithafp.com" target="_blank" rel="noopener">🌐 financewithafp.com</a>
               </div>
@@ -602,7 +602,7 @@
     </p>
     <p style="margin:0;">
       Questions? Contact Kim Langlois ·
-      <a href="/cdn-cgi/l/email-protection#3b5052567b5d52555a55585e4c524f535a5d4b15585456"><span class="__cf_email__" data-cfemail="6c0705012c0a05020d020f091b0518040d0a1c420f0301">[email&#160;protected]</span></a> ·
+      <a href="#" id="kimFooterEmail" style="color:rgba(255,255,255,0.82);text-decoration:none;"></a> ·
       <a href="tel:9495668795">949.566.8795</a> ·
       <a href="http://www.financewithafp.com" target="_blank" rel="noopener">financewithafp.com</a>
     </p>
@@ -611,7 +611,18 @@
     </p>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
+    // ── Build Kim's email at runtime (prevents Cloudflare re-encoding) ──
+    (function() {
+      const email = ['kim', 'financewithafp.com'].join('@');
+      const cardLink   = document.getElementById('kimEmailLink');
+      const cardText   = document.getElementById('kimEmailText');
+      const footerLink = document.getElementById('kimFooterEmail');
+      if (cardLink)   cardLink.href        = 'mailto:' + email;
+      if (cardText)   cardText.textContent = email;
+      if (footerLink) { footerLink.href = 'mailto:' + email; footerLink.textContent = email; }
+    })();
+
     // ── Payment Estimator ─────────────────────────────────────────
     // Rate factors derived from AFP's published payment examples ($25k base)
     const FACTORS = { 24: 0.047027, 36: 0.032220, 48: 0.025123, 60: 0.020520 };
@@ -672,11 +683,4 @@
             <span class="rname">— ${r.name}, ${r.role}</span>
           </div>`;
         reviewsWrap.appendChild(card);
-        requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('vis')));
-      });
-    }
-
-    renderReviews();
-  </script>
-</body>
-</html>
+      
